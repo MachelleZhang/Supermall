@@ -5,35 +5,32 @@
 				<div>购物街</div>
 			</template>
 		</NavBar>
-		<Swiper :interval="1000">
-			<SwiperItem>
-				<img src="~assets/image/tabbar/home.svg" />
-			</SwiperItem>
-			<SwiperItem>
-				<img src="~assets/image/tabbar/cart.svg" />
-			</SwiperItem>
-			<SwiperItem>
-				<img src="~assets/image/tabbar/category.svg" />
-			</SwiperItem>
-			<SwiperItem>
-				<img src="~assets/image/tabbar/profile.svg" />
-			</SwiperItem>
-		</Swiper>
-
+		<HomeSwiper :datas="banners"></HomeSwiper>
 	</div>
 </template>
 
 <script>
 	import NavBar from "components/common/navbar/NavBar";
-	import { Swiper, SwiperItem } from "components/common/swiper";
+	import HomeSwiper from "./child_cmps/HomeSwiper";
+	import { getMultiData } from "network/home_req";
 
 	export default {
 		name: "home",
 		components: {
 			NavBar,
-			Swiper,
-			SwiperItem
-		}
+			HomeSwiper
+		},
+		data() {
+			return {
+				banners: [], //轮播图数据
+			}
+		},
+		created() {
+			getMultiData().then(res => {
+				console.log(res);
+				this.banners = res.banner;
+			});
+		},
 	}
 </script>
 
