@@ -1,7 +1,7 @@
 <template>
 	<Swiper>
 		<SwiperItem v-for="(item, index) in datas" :key="index">
-			<img :src="item.link" />
+			<img :src="item.img" />
 		</SwiperItem>
 	</Swiper>
 </template>
@@ -16,7 +16,12 @@
 			SwiperItem
 		},
 		props: {
-			datas: Array
+			datas: {
+				type: Array,
+				default() {
+					return [];
+				}
+			}
 		}
 	}
 </script>
