@@ -1,8 +1,10 @@
 <template>
 	<div class="recommend">
 		<div class="recommend-item" v-for="(item, index) in datas" :key="index">
-			<img :src="item.img" />
-			<div>{{ item.title }}</div>
+			<a :href="item.link">
+				<img :src="item.img" />
+				<div>{{ item.title }}</div>
+			</a>
 		</div>
 	</div>
 </template>
@@ -35,7 +37,7 @@
 	}
 
 	.recommend-item img {
-		margin: 5px 5px 10px;
+		margin: 5px 10px 10px;
 		border-radius: 50%;
 		background-color: var(--color-tint);
 	 }
