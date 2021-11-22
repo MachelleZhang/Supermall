@@ -6,3 +6,10 @@ export const getMultiData = () => {
 		method: "POST"
 	})
 }
+
+export const getHomeListData = () => {
+	return request({
+		url: "/home/listdata",
+		method: "POST"
+	})
+}

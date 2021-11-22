@@ -26,6 +26,7 @@
 		methods: {
 			itemClick(index) {
 				this.currentIndex = index;
+				this.$emit('tabClick', index);
 			}
 		}
 	}
@@ -39,6 +40,7 @@
 		text-align: center;
 		font-size: 15px;
 		background-color: #fff;
+		z-index: 9;
 	}
 
 	.tab-ctrl-item {

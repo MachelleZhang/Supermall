@@ -63,4 +63,21 @@ let multidata = {
 	],
 }
 
+/*	mock构建数据释义
+ *	属性listdata是一个数组，包含10个元素
+ * 		img从数组中随机取1个值
+ * 		title从数组中随机取1个值
+ * 		price的值取60到300的随机值
+ * 		cfav的值取1000到9999的随机值
+ */
+let listdata = Home_mock.mock({
+	'listdata|10': [{
+		'img|1': [require('assets/image/tabbar/profile.svg'), require('assets/image/tabbar/home.svg'), require('assets/image/tabbar/category.svg'), require('assets/image/tabbar/cart.svg')],
+		'title|1': ['复古风连衣裙', '夹克T恤', '标题1123', '标题是框架', '圣诞节回复圣诞节回复圣诞节回复圣诞节回复'],
+		'price|60-300': 0,
+		'cfav|1000-9999': 0,
+	}]
+});
+
 Home_mock.mock("/home/multidata", multidata);
+Home_mock.mock("/home/listdata", listdata.listdata);

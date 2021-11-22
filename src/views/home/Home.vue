@@ -8,7 +8,8 @@
 		<HomeSwiper :datas="banners"></HomeSwiper>
 		<RecommendView :datas="recommends"></RecommendView>
 		<FeatureView :datas="features"></FeatureView>
-		<TabControl class="home-tab-control" :datas="tabDatas"></TabControl>
+		<TabControl class="home-tab-control" :datas="tabDatas" @tabClick="tabClick"></TabControl>
+		<GoodsList :datas="goods"></GoodsList>
 		<ul>
 			<li></li>
 			<li></li>
@@ -90,16 +91,18 @@
 <script>
 	import NavBar from "components/common/navbar/NavBar";
 	import TabControl from "components/content/tab_control/TabControl";
+	import GoodsList from "components/content/goods_list/GoodsList";
 	import HomeSwiper from "./child_cmps/HomeSwiper";
 	import RecommendView from "./child_cmps/RecommendView";
 	import FeatureView from "./child_cmps/FeatureView";
-	import { getMultiData } from "network/home_req";
+	import { getMultiData, getHomeListData } from "network/home_req";
 
 	export default {
 		name: "home",
 		components: {
 			NavBar,
 			TabControl,
+			GoodsList,
 			HomeSwiper,
 			RecommendView,
 			FeatureView
@@ -110,15 +113,31 @@
 				recommends: [], //推荐数据
 				features: [], //本周流行数据
 				tabDatas: ["流行", "新款", "精选"], //tab control数据
+				goods: [], //商品列表数据
 			}
 		},
 		created() {
-			getMultiData().then(res => {
-				this.banners = res.banner;
-				this.recommends = res.recommend;
-				this.features = res.feature;
-			});
+			this.getMultiDataInterface();
+			this.getHomeListDataInterface();
 		},
+		methods: {
+			tabClick() {
+				this.getHomeListDataInterface();
+			},
+			// network
+			getMultiDataInterface() {
+				getMultiData().then(res => {
+					this.banners = res.banner;
+					this.recommends = res.recommend;
+					this.features = res.feature;
+				});
+			},
+			getHomeListDataInterface() {
+				getHomeListData().then(res => {
+					this.goods = res;
+				});
+			}
+		}
 	}
 </script>
 
