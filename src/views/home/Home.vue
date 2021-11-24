@@ -5,91 +5,19 @@
 				<div>购物街</div>
 			</template>
 		</NavBar>
-		<HomeSwiper :datas="banners"></HomeSwiper>
-		<RecommendView :datas="recommends"></RecommendView>
-		<FeatureView :datas="features"></FeatureView>
-		<TabControl class="home-tab-control" :datas="tabDatas" @tabClick="tabClick"></TabControl>
-		<GoodsList :datas="goods"></GoodsList>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li><li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+		<Scroll class="home-content">
+			<HomeSwiper :datas="banners"></HomeSwiper>
+			<RecommendView :datas="recommends"></RecommendView>
+			<FeatureView :datas="features"></FeatureView>
+			<TabControl class="home-tab-control" :datas="tabDatas" @tabClick="tabClick"></TabControl>
+			<GoodsList :datas="goods"></GoodsList>
+		</Scroll>
 	</div>
 </template>
 
 <script>
 	import NavBar from "components/common/navbar/NavBar";
+	import Scroll from "components/common/scroll/Scroll";
 	import TabControl from "components/content/tab_control/TabControl";
 	import GoodsList from "components/content/goods_list/GoodsList";
 	import HomeSwiper from "./child_cmps/HomeSwiper";
@@ -101,6 +29,7 @@
 		name: "home",
 		components: {
 			NavBar,
+			Scroll,
 			TabControl,
 			GoodsList,
 			HomeSwiper,
@@ -143,7 +72,17 @@
 
 <style scoped>
 	#home {
-		padding-top: 44px;
+		height: 100vh;
+		position: relative;
+	}
+
+	.home-content {
+		overflow: hidden;
+		position: absolute;
+		top: 44px;
+		bottom: 49px;
+		left: 0;
+		right: 0;
 	}
 
 	.home-nav {
