@@ -5,13 +5,14 @@
 				<div>购物街</div>
 			</template>
 		</NavBar>
-		<Scroll class="home-content">
+		<Scroll class="home-content" ref="scroll" @scroll="scrollChange" :pullUpLoad="true" @pullingUp="loadMore">
 			<HomeSwiper :datas="banners"></HomeSwiper>
 			<RecommendView :datas="recommends"></RecommendView>
 			<FeatureView :datas="features"></FeatureView>
 			<TabControl class="home-tab-control" :datas="tabDatas" @tabClick="tabClick"></TabControl>
 			<GoodsList :datas="goods"></GoodsList>
 		</Scroll>
+		<BackTop @click.native="backTopClick" v-show="bktopShow"></BackTop>
 	</div>
 </template>
 
@@ -20,6 +21,7 @@
 	import Scroll from "components/common/scroll/Scroll";
 	import TabControl from "components/content/tab_control/TabControl";
 	import GoodsList from "components/content/goods_list/GoodsList";
+	import BackTop from "components/content/back_top/BackTop";
 	import HomeSwiper from "./child_cmps/HomeSwiper";
 	import RecommendView from "./child_cmps/RecommendView";
 	import FeatureView from "./child_cmps/FeatureView";
@@ -32,6 +34,7 @@
 			Scroll,
 			TabControl,
 			GoodsList,
+			BackTop,
 			HomeSwiper,
 			RecommendView,
 			FeatureView
@@ -43,6 +46,8 @@
 				features: [], //本周流行数据
 				tabDatas: ["流行", "新款", "精选"], //tab control数据
 				goods: [], //商品列表数据
+				bktopShow: false, //回到顶部显示标志
+				currentPage: 1,//当前页
 			}
 		},
 		created() {
@@ -52,6 +57,24 @@
 		methods: {
 			tabClick() {
 				this.getHomeListDataInterface();
+			},
+			backTopClick() {
+				this.$refs.scroll.scrollTo(0, 0);
+			},
+			scrollChange(position) {
+				this.bktopShow = -position.y > 1000;
+			},
+			loadMore() {
+				if (this.currentPage > 3) {
+					console.log("没有更多数据了");
+				} else {
+					console.log("加载更多");
+					this.currentPage += 1;
+					this.getHomeListDataInterface();
+				}
+				setTimeout(() => {
+					this.$refs.scroll.finishPullUp();
+				}, 3000);
 			},
 			// network
 			getMultiDataInterface() {
@@ -63,7 +86,11 @@
 			},
 			getHomeListDataInterface() {
 				getHomeListData().then(res => {
-					this.goods = res;
+					if (this.currentPage === 1) {
+						this.goods = res;
+					} else {
+						this.goods = [...this.goods, ...res];
+					}
 				});
 			}
 		}
