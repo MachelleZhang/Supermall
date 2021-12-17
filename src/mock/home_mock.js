@@ -67,8 +67,8 @@ let multidata = {
  *	属性listdata是一个数组，包含10个元素
  * 		img从数组中随机取1个值
  * 		title从数组中随机取1个值
- * 		price的值取60到300的随机值
- * 		cfav的值取1000到9999的随机值
+ * 		price的值取60到300的随机值，默认值0
+ * 		cfav的值取1000到9999的随机值，默认值0
  */
 let listdata = Home_mock.mock({
 	'listdata|10': [{
