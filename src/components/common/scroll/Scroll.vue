@@ -32,12 +32,16 @@
 				probeType: this.probeType,
 				pullUpLoad: this.pullUpLoad
 			});
-			this.bscroll.on("scroll", position => {
-				this.$emit("scroll", position);
-			});
-			this.bscroll.on("pullingUp", () => {
-				this.$emit("pullingUp");
-			});
+			if (this.probeType === 2 || this.probeType === 3) {
+				this.bscroll.on("scroll", position => {
+					this.$emit("scroll", position);
+				});
+			}
+			if (this.pullUpLoad) {
+				this.bscroll.on("pullingUp", () => {
+					this.$emit("pullingUp");
+				});
+			}
 		},
 		updated() {
 			//初始化的高度太低，不能滚动，需要在加载完成后刷新一下，better-scroll才能获取正确的高度，进而可以滚动。

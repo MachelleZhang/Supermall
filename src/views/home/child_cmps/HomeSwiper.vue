@@ -1,7 +1,7 @@
 <template>
 	<Swiper>
 		<SwiperItem v-for="(item, index) in datas" :key="index">
-			<img :src="item.img" />
+			<img :src="item.img" @load="imageLoaded" />
 		</SwiperItem>
 	</Swiper>
 </template>
@@ -20,6 +20,19 @@
 				type: Array,
 				default() {
 					return [];
+				}
+			}
+		},
+		data() {
+			return {
+				isImageLoaded: false,
+			}
+		},
+		methods: {
+			imageLoaded() {
+				if (!this.isImageLoaded) {
+					this.isImageLoaded = true;
+					this.$emit("imageLoaded");
 				}
 			}
 		}

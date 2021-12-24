@@ -5,13 +5,20 @@
 				<div>购物街</div>
 			</template>
 		</NavBar>
-		<Scroll class="home-content" ref="scroll" @scroll="scrollChange" :pullUpLoad="true" @pullingUp="loadMore">
-			<HomeSwiper :datas="banners"></HomeSwiper>
+
+		<TabControl class="home-tab-control" :datas="tabDatas" v-show="isFixedControl"
+					@tabClick="tabClick" ref="fixedHomeTabControl">
+		</TabControl>
+
+		<Scroll class="home-content" ref="scroll" @scroll="scrollChange"
+				:probeType="3" :pullUpLoad="true" @pullingUp="loadMore">
+			<HomeSwiper :datas="banners" @imageLoaded="swiperImageLoaded"></HomeSwiper>
 			<RecommendView :datas="recommends"></RecommendView>
 			<FeatureView :datas="features"></FeatureView>
-			<TabControl class="home-tab-control" :datas="tabDatas" @tabClick="tabClick"></TabControl>
+			<TabControl :datas="tabDatas" @tabClick="tabClick" ref="homeTabControl"></TabControl>
 			<GoodsList :datas="goods"></GoodsList>
 		</Scroll>
+		
 		<BackTop @click.native="backTopClick" v-show="bktopShow"></BackTop>
 	</div>
 </template>
@@ -48,6 +55,8 @@
 				goods: [], //商品列表数据
 				bktopShow: false, //回到顶部显示标志
 				currentPage: 1,//当前页
+				tabControlOffsetTop: 0, //tab-control的偏移量，用于吸顶效果
+				isFixedControl: false, //tab-control是否吸顶
 			}
 		},
 		created() {
@@ -55,7 +64,9 @@
 			this.getHomeListDataInterface();
 		},
 		methods: {
-			tabClick() {
+			tabClick(index) {
+				this.$refs.homeTabControl.currentIndex = index;
+				this.$refs.fixedHomeTabControl.currentIndex = index;
 				this.getHomeListDataInterface();
 			},
 			backTopClick() {
@@ -63,6 +74,7 @@
 			},
 			scrollChange(position) {
 				this.bktopShow = -position.y > 1000;
+				this.isFixedControl = -position.y > this.tabControlOffsetTop;
 			},
 			loadMore() {
 				if (this.currentPage > 3) {
@@ -75,6 +87,10 @@
 				setTimeout(() => {
 					this.$refs.scroll.finishPullUp();
 				}, 3000);
+			},
+			//轮播图图片加载完成事件
+			swiperImageLoaded() {
+				this.tabControlOffsetTop = this.$refs.homeTabControl.$el.offsetTop;
 			},
 			// network
 			getMultiDataInterface() {
@@ -115,15 +131,17 @@
 	.home-nav {
 		background-color: var(--color-tint);
 		color: #fff;
-		position: fixed;
-		left: 0;
-		right: 0;
-		top: 0;
-		z-index: 20;
+		/*使用原生滚动时，导航栏需要吸顶，使用better-scroll后不再需要*/
+		/*position: fixed;*/
+		/*left: 0;*/
+		/*right: 0;*/
+		/*top: 0;*/
+		/*z-index: 20;*/
 	}
 
 	.home-tab-control {
-		position: sticky;
-		top: 44px;
+		/*开启定位，z-index才能生效*/
+		position: relative;
+		z-index: 9;
 	}
 </style>
