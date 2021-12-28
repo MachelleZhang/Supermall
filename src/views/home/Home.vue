@@ -18,7 +18,7 @@
 			<TabControl :datas="tabDatas" @tabClick="tabClick" ref="homeTabControl"></TabControl>
 			<GoodsList :datas="goods"></GoodsList>
 		</Scroll>
-		
+
 		<BackTop @click.native="backTopClick" v-show="bktopShow"></BackTop>
 	</div>
 </template>
@@ -57,11 +57,19 @@
 				currentPage: 1,//当前页
 				tabControlOffsetTop: 0, //tab-control的偏移量，用于吸顶效果
 				isFixedControl: false, //tab-control是否吸顶
+				saveOffsetY: 0, //滚动偏移量保存
 			}
 		},
 		created() {
 			this.getMultiDataInterface();
 			this.getHomeListDataInterface();
+		},
+		activated() {
+			this.$refs.scroll.scrollTo(0, this.saveOffsetY, 0);
+			this.$refs.scroll.refresh();
+		},
+		deactivated() {
+			this.saveOffsetY = this.$refs.scroll.getOffsetY();
 		},
 		methods: {
 			tabClick(index) {

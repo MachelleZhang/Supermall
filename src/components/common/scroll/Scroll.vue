@@ -48,11 +48,17 @@
 			this.bscroll.refresh();
 		},
 		methods: {
+			refresh() {
+				this.bscroll && this.bscroll.refresh();
+			},
 			scrollTo(x, y, time=500) {
-				this.bscroll.scrollTo(x, y, time);
+				this.bscroll && this.bscroll.scrollTo(x, y, time);
 			},
 			finishPullUp() {
-				this.bscroll.finishPullUp();
+				this.bscroll && this.bscroll.finishPullUp();
+			},
+			getOffsetY() {
+				return this.bscroll ? this.bscroll.y : 0;
 			}
 		}
 	}
