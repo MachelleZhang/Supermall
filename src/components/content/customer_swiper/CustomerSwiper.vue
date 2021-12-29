@@ -1,5 +1,5 @@
 <template>
-	<Swiper>
+	<Swiper class="customer-swiper">
 		<SwiperItem v-for="(item, index) in datas" :key="index">
 			<img :src="item.img" @load="imageLoaded" />
 		</SwiperItem>
@@ -10,7 +10,7 @@
 	import { Swiper, SwiperItem } from "components/common/swiper";
 
 	export default {
-		name: "HomeSwiper",
+		name: "CustomerSwiper",
 		components: {
 			Swiper,
 			SwiperItem
@@ -18,9 +18,7 @@
 		props: {
 			datas: {
 				type: Array,
-				default() {
-					return [];
-				}
+				default: () => []
 			}
 		},
 		data() {
@@ -40,5 +38,7 @@
 </script>
 
 <style scoped>
-
+	.customer-swiper {
+		height: 300px;
+	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div id="mz-swiper">
-		<div class="swiper" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
+		<div class="common-swiper" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
 			<slot></slot>
 		</div>
 		<div class="indicator">
@@ -49,7 +49,7 @@
 		methods: {
 			// 处理dom
 			handleDom() {
-				let swiperEl = document.querySelector('.swiper');
+				let swiperEl = document.querySelector('.common-swiper');
 				let slideEls = document.getElementsByClassName('slide');
 				this.slideCount = slideEls.length;
 
@@ -154,7 +154,7 @@
 		position: relative;
 	}
 
-	.swiper {
+	.common-swiper {
 		display: flex;
 	}
 

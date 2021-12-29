@@ -27,6 +27,11 @@ const routes = [
 		name: "我的",
 		path: "/profile",
 		component: () => import("@/views/profile/Profile")
+	},
+	{
+		name: "详情",
+		path: "/detail",
+		component: () => import("@/views/detail/Detail")
 	}
 ];
 

@@ -1,8 +1,8 @@
 <template>
-	<div class="tab-control">
+	<div class="tab-control" :class="{ 'nav-font-size': useOnNav }">
 		<div class="tab-ctrl-item" v-for="(item, index) in datas" :key="index"
 			 :class="{ active: index === currentIndex }" @click="itemClick(index)">
-			<span>{{ item }}</span>
+			<span :class="{ 'item-text': !useOnNav }">{{ item }}</span>
 		</div>
 	</div>
 </template>
@@ -13,9 +13,12 @@
 		props: {
 			datas: {
 				type: Array,
-				default() {
-					return [];
-				}
+				default: () => []
+			},
+			//是否用于nav-bar，区别在于样式
+			useOnNav: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -42,6 +45,10 @@
 		background-color: #fff;
 	}
 
+	.tab-control.nav-font-size {
+		font-size: 12px;
+	}
+
 	.tab-ctrl-item {
 		flex: 1;
 	}
@@ -54,7 +61,7 @@
 		color: var(--color-tint);
 	}
 
-	.tab-ctrl-item.active span {
+	.tab-ctrl-item.active .item-text {
 		border-bottom: 2px solid var(--color-tint);
 	}
 </style>

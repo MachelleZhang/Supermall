@@ -12,7 +12,7 @@
 
 		<Scroll class="home-content" ref="scroll" @scroll="scrollChange"
 				:probeType="3" :pullUpLoad="true" @pullingUp="loadMore">
-			<HomeSwiper :datas="banners" @imageLoaded="swiperImageLoaded"></HomeSwiper>
+			<CustomerSwiper :datas="banners" @imageLoaded="swiperImageLoaded"></CustomerSwiper>
 			<RecommendView :datas="recommends"></RecommendView>
 			<FeatureView :datas="features"></FeatureView>
 			<TabControl :datas="tabDatas" @tabClick="tabClick" ref="homeTabControl"></TabControl>
@@ -29,7 +29,7 @@
 	import TabControl from "components/content/tab_control/TabControl";
 	import GoodsList from "components/content/goods_list/GoodsList";
 	import BackTop from "components/content/back_top/BackTop";
-	import HomeSwiper from "./child_cmps/HomeSwiper";
+	import CustomerSwiper from "components/content/customer_swiper/CustomerSwiper";
 	import RecommendView from "./child_cmps/RecommendView";
 	import FeatureView from "./child_cmps/FeatureView";
 	import { getMultiData, getHomeListData } from "network/home_req";
@@ -42,7 +42,7 @@
 			TabControl,
 			GoodsList,
 			BackTop,
-			HomeSwiper,
+			CustomerSwiper,
 			RecommendView,
 			FeatureView
 		},
@@ -117,7 +117,7 @@
 					}
 				});
 			}
-		}
+		},//methods-end
 	}
 </script>
 
