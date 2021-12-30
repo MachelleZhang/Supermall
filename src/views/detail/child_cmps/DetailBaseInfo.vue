@@ -89,7 +89,7 @@
 		color: #a3a3a3;
 		justify-content: space-between;
 		padding: 10px 0;
-		border-bottom: 2px solid #eeeeee;
+		border-bottom: 1px solid #eeeeee;
 	}
 
 	.detail-base-info>.extend-info {
