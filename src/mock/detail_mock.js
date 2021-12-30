@@ -47,6 +47,15 @@ let detailData = {
 				'isBetter|1': true
 			},
 		]
+	},
+	'goodsInfo': {
+		'desc': '【新品发布】【秋季新款】【2件68元】【全国包邮】【预售】【新款】',
+		'images': [
+			require('assets/image/tabbar/home.svg'),
+			require('assets/image/tabbar/category.svg'),
+			require('assets/image/tabbar/cart.svg'),
+			require('assets/image/tabbar/profile.svg')
+		]
 	}
 }
 

@@ -1,3 +1,4 @@
+<!--详情页-店铺信息-->
 <template>
 	<div class="detail-shop-info">
 		<div class="header">

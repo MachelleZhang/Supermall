@@ -1,3 +1,4 @@
+<!--详情页-基本信息-->
 <template>
 	<div class="detail-base-info">
 		<div class="title">{{ datas.title }}</div>

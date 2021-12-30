@@ -5,6 +5,7 @@
 			<CustomerSwiper :datas="swiperData"></CustomerSwiper>
 			<DetailBaseInfo :datas="baseInfo"></DetailBaseInfo>
 			<DetailShopInfo :datas="shopInfo"></DetailShopInfo>
+			<DetailGoodsInfo :datas="goodsInfo"></DetailGoodsInfo>
 		</Scroll>
 	</div>
 </template>
@@ -15,6 +16,7 @@
 	import DetailNav from "./child_cmps/DetailNav";
 	import DetailBaseInfo from "./child_cmps/DetailBaseInfo";
 	import DetailShopInfo from "./child_cmps/DetailShopInfo";
+	import DetailGoodsInfo from "./child_cmps/DetailGoodsInfo";
 	import { getDetailData } from "network/detail_req";
 
 	export default {
@@ -24,13 +26,15 @@
 			Scroll,
 			DetailNav,
 			DetailBaseInfo,
-			DetailShopInfo
+			DetailShopInfo,
+			DetailGoodsInfo
 		},
 		data() {
 			return {
 				swiperData: [],
 				baseInfo: {},
-				shopInfo: {}
+				shopInfo: {},
+				goodsInfo: {}
 			}
 		},
 		created() {
@@ -43,6 +47,7 @@
 					this.swiperData = res.topImages;
 					this.baseInfo = res.baseInfo;
 					this.shopInfo = res.shopInfo;
+					this.goodsInfo = res.goodsInfo;
 				})
 			}
 		}

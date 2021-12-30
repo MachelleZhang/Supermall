@@ -1,19 +1,5 @@
 # supermall
 
-## Project setup
-```
-npm install
-```
+​		跟随coderwhy老师视频学习的商城项目。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+​		项目里仿写的同时，加入了自己的开发习惯。没有使用服务器接口请求，而是使用mockjs制造本地数据展现。
