@@ -7,7 +7,7 @@
 			<div class="bottom-line"></div>
 		</div>
 		<div v-for="item in datas.images">
-			<img :src="item"/>
+			<img :src="item" @load="imageLoaded"/>
 		</div>
 	</div>
 </template>
@@ -21,12 +21,26 @@
 				default: () => {}
 			}
 		},
+		data() {
+			return {
+				imageLoadedCount: 0
+			}
+		},
+		methods: {
+			imageLoaded() {
+				this.imageLoadedCount += 1;
+				if (this.imageLoadedCount === this.datas.images.length) {
+					this.$emit('imageLoaded');
+				}
+			}
+		}
 	}
 </script>
 
 <style scoped>
 	.detail-goods-info {
 		margin-top: 10px;
+		border-bottom: 5px solid #eeeeee;
 	}
 
 	.detail-goods-info .top-line {

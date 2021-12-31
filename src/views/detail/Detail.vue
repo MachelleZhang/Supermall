@@ -1,11 +1,12 @@
 <template>
 	<div>
 		<DetailNav class="detail-nav"></DetailNav>
-		<Scroll class="detail-content">
+		<Scroll class="detail-content" ref="scroll">
 			<CustomerSwiper :datas="swiperData"></CustomerSwiper>
 			<DetailBaseInfo :datas="baseInfo"></DetailBaseInfo>
 			<DetailShopInfo :datas="shopInfo"></DetailShopInfo>
-			<DetailGoodsInfo :datas="goodsInfo"></DetailGoodsInfo>
+			<DetailGoodsInfo :datas="goodsInfo" @imageLoaded="goodsImageLoaded"></DetailGoodsInfo>
+			<DetailParamInfo :datas="paramInfo"></DetailParamInfo>
 		</Scroll>
 	</div>
 </template>
@@ -17,6 +18,7 @@
 	import DetailBaseInfo from "./child_cmps/DetailBaseInfo";
 	import DetailShopInfo from "./child_cmps/DetailShopInfo";
 	import DetailGoodsInfo from "./child_cmps/DetailGoodsInfo";
+	import DetailParamInfo from "./child_cmps/DetailParamInfo";
 	import { getDetailData } from "network/detail_req";
 
 	export default {
@@ -27,14 +29,16 @@
 			DetailNav,
 			DetailBaseInfo,
 			DetailShopInfo,
-			DetailGoodsInfo
+			DetailGoodsInfo,
+			DetailParamInfo
 		},
 		data() {
 			return {
 				swiperData: [],
 				baseInfo: {},
 				shopInfo: {},
-				goodsInfo: {}
+				goodsInfo: {},
+				paramInfo: {}
 			}
 		},
 		created() {
@@ -48,7 +52,11 @@
 					this.baseInfo = res.baseInfo;
 					this.shopInfo = res.shopInfo;
 					this.goodsInfo = res.goodsInfo;
+					this.paramInfo = res.paramInfo;
 				})
+			},
+			goodsImageLoaded() {
+				this.$refs.scroll.refresh();
 			}
 		}
 	}

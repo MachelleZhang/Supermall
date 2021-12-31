@@ -45,6 +45,7 @@
 		},
 		updated() {
 			//初始化的高度太低，不能滚动，需要在加载完成后刷新一下，better-scroll才能获取正确的高度，进而可以滚动。
+			//此处刷新后，可以不用再监听imageLoaded
 			this.bscroll.refresh();
 		},
 		methods: {

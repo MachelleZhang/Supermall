@@ -56,6 +56,27 @@ let detailData = {
 			require('assets/image/tabbar/cart.svg'),
 			require('assets/image/tabbar/profile.svg')
 		]
+	},
+	'paramInfo': {
+		'name': '产品参数',
+		'infos': [
+			{ key: '图案', value: '宫廷复古图/民族复古图，字母/文字/图案' },
+			{ key: '厂名', value: '艾莉莉服饰公司' },
+			{ key: '颜色', value: '黑白拼接' },
+			{ key: '袖型', value: '泡泡袖' },
+			{ key: '厚度', value: '适中' },
+			{ key: '尺码', value: 'M,L,XL,XXL' },
+			{ key: '衣长', value: '常规款（51-65cm）' },
+			{ key: '版型', value: '宽松' },
+			{ key: '季节', value: '春秋' },
+			{ key: '材质', value: '纯棉' }
+		],
+		'tables': [
+			['尺码', 'M', 'L', 'XL', 'XXL'],
+			['衣长', '61.5', '63', '64.5', '66'],
+			['胸围', '98', '104', '110', '116'],
+			['袖长', '63', '66', '68.5', '70.5']
+		]
 	}
 }
 
