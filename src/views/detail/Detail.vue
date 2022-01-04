@@ -7,6 +7,7 @@
 			<DetailShopInfo :datas="shopInfo"></DetailShopInfo>
 			<DetailGoodsInfo :datas="goodsInfo" @imageLoaded="goodsImageLoaded"></DetailGoodsInfo>
 			<DetailParamInfo :datas="paramInfo"></DetailParamInfo>
+			<DetailCommentInfo :datas="commentInfo"></DetailCommentInfo>
 		</Scroll>
 	</div>
 </template>
@@ -19,6 +20,7 @@
 	import DetailShopInfo from "./child_cmps/DetailShopInfo";
 	import DetailGoodsInfo from "./child_cmps/DetailGoodsInfo";
 	import DetailParamInfo from "./child_cmps/DetailParamInfo";
+	import DetailCommentInfo from "./child_cmps/DetailCommentInfo";
 	import { getDetailData } from "network/detail_req";
 
 	export default {
@@ -30,7 +32,8 @@
 			DetailBaseInfo,
 			DetailShopInfo,
 			DetailGoodsInfo,
-			DetailParamInfo
+			DetailParamInfo,
+			DetailCommentInfo
 		},
 		data() {
 			return {
@@ -38,7 +41,8 @@
 				baseInfo: {},
 				shopInfo: {},
 				goodsInfo: {},
-				paramInfo: {}
+				paramInfo: {},
+				commentInfo: []
 			}
 		},
 		created() {
@@ -53,6 +57,7 @@
 					this.shopInfo = res.shopInfo;
 					this.goodsInfo = res.goodsInfo;
 					this.paramInfo = res.paramInfo;
+					this.commentInfo = res.commentInfo;
 				})
 			},
 			goodsImageLoaded() {

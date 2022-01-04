@@ -77,7 +77,52 @@ let detailData = {
 			['胸围', '98', '104', '110', '116'],
 			['袖长', '63', '66', '68.5', '70.5']
 		]
-	}
+	},
+	'commentInfo|+1': [
+		[
+			{
+				avatar: require('assets/image/tabbar/home.svg'),
+				username: '夏夏夏夏夏夏天',
+				comment: '东西很好用，孩子很喜欢，已经买了一车了。',
+				buyDate: 1641261271,
+				buyType: '白(5866)',
+				buyParam: 'M',
+				images: [
+					require('assets/image/tabbar/cart.svg'),
+					require('assets/image/tabbar/profile.svg'),
+					require('assets/image/tabbar/cart.svg'),
+					require('assets/image/tabbar/profile.svg'),
+					require('assets/image/tabbar/profile.svg')
+				]
+			}
+		],
+		[
+			{
+				avatar: require('assets/image/tabbar/home.svg'),
+				username: '春田',
+				comment: '大家加油哦！',
+				buyDate: 1641261271,
+				buyType: '粉(7542)',
+				buyParam: 'M',
+				images: [
+					require('assets/image/tabbar/cart.svg'),
+					require('assets/image/tabbar/profile.svg')
+				]
+			},
+			{
+				avatar: require('assets/image/tabbar/home.svg'),
+				username: '佩可莉姆',
+				comment: '欧娜卡，佩可佩可哒。',
+				buyDate: 1641261271,
+				buyType: '白(9632)',
+				buyParam: 'XL',
+				images: [
+					require('assets/image/tabbar/cart.svg'),
+					require('assets/image/tabbar/profile.svg')
+				]
+			}
+		]
+	]
 }
 
 Detail_mock.mock("/detail/detailData", detailData);
