@@ -122,7 +122,19 @@ let detailData = {
 				]
 			}
 		]
-	]
+	],
+	'listData|4': [{
+		'id|+1': 1,
+		'img|1': [
+			require('assets/image/tabbar/profile.svg'),
+			require('assets/image/tabbar/home.svg'),
+			require('assets/image/tabbar/category.svg'),
+			require('assets/image/tabbar/cart.svg')
+		],
+		'title|1': ['复古风连衣裙', '夹克T恤', '标题1123', '标题是框架', '圣诞节回复圣诞节回复圣诞节回复圣诞节回复'],
+		'price|60-300': 0,
+		'cfav|1000-9999': 0,
+	}]
 }
 
 Detail_mock.mock("/detail/detailData", detailData);

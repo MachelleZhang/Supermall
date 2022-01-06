@@ -24,11 +24,11 @@
 </template>
 
 <script>
+	import BackTopMixin from "common/mixins/BackTopMixin";
 	import NavBar from "components/common/navbar/NavBar";
 	import Scroll from "components/common/scroll/Scroll";
 	import TabControl from "components/content/tab_control/TabControl";
 	import GoodsList from "components/content/goods_list/GoodsList";
-	import BackTop from "components/content/back_top/BackTop";
 	import CustomerSwiper from "components/content/customer_swiper/CustomerSwiper";
 	import RecommendView from "./child_cmps/RecommendView";
 	import FeatureView from "./child_cmps/FeatureView";
@@ -36,12 +36,12 @@
 
 	export default {
 		name: "home",
+		mixins: [BackTopMixin],
 		components: {
 			NavBar,
 			Scroll,
 			TabControl,
 			GoodsList,
-			BackTop,
 			CustomerSwiper,
 			RecommendView,
 			FeatureView
@@ -53,7 +53,6 @@
 				features: [], //本周流行数据
 				tabDatas: ["流行", "新款", "精选"], //tab control数据
 				goods: [], //商品列表数据
-				bktopShow: false, //回到顶部显示标志
 				currentPage: 1,//当前页
 				tabControlOffsetTop: 0, //tab-control的偏移量，用于吸顶效果
 				isFixedControl: false, //tab-control是否吸顶
@@ -76,9 +75,6 @@
 				this.$refs.homeTabControl.currentIndex = index;
 				this.$refs.fixedHomeTabControl.currentIndex = index;
 				this.getHomeListDataInterface();
-			},
-			backTopClick() {
-				this.$refs.scroll.scrollTo(0, 0);
 			},
 			scrollChange(position) {
 				this.bktopShow = -position.y > 1000;

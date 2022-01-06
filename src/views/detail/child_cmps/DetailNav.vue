@@ -7,7 +7,7 @@
 		</template>
 		<template v-slot:center>
 			<div class="nav-tab-control">
-				<TabControl :datas="tabDatas" :useOnNav="true"></TabControl>
+				<TabControl :datas="tabDatas" :useOnNav="true" @tabClick="tabClick" ref="tabControl"></TabControl>
 			</div>
 		</template>
 	</NavBar>
@@ -31,6 +31,12 @@
 		methods: {
 			backClick() {
 				this.$router.back();
+			},
+			tabClick(index) {
+				this.$emit("navTabClick", index);
+			},
+			setCurrentSelectIndex(index) {
+				this.$refs.tabControl.currentIndex = index;
 			}
 		}
 	}

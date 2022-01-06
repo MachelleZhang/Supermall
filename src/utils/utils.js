@@ -31,7 +31,6 @@ function dateFormat(date, fmt) {
 			result = result.replace(RegExp.$1, repStr);
 		}
 	}
-	console.log(date, result);
 	return result;
 }
 

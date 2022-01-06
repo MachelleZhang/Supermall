@@ -1,6 +1,6 @@
 <template>
 	<div class="goods-list-item" @click="itemClick">
-		<img :src="itemData.img" />
+		<img :src="itemData.img" @load="imageLoaded"/>
 		<div class="info">
 			<p>{{ itemData.title }}</p>
 			<span class="price">{{ itemData.price }}</span>
@@ -28,6 +28,9 @@
 						id: this.itemData.id
 					}
 				})
+			},
+			imageLoaded() {
+				this.$emit("imageLoaded");
 			}
 		}
 	}
