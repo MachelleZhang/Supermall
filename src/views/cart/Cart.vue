@@ -1,11 +1,21 @@
 <template>
-<div>购物车</div>
+	<div>
+		<CartNav></CartNav>
+		<CartList></CartList>
+	</div>
 </template>
 
 <script>
-export default {
-	name: "cart"
-}
+	import CartNav from "./child_cmps/CartNav";
+	import CartList from "./child_cmps/CartList";
+
+	export default {
+		name: "Cart",
+		components: {
+			CartNav,
+			CartList
+		}
+	}
 </script>
 
 <style scoped>

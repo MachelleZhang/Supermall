@@ -11,7 +11,7 @@
 			<DetailCommentInfo :datas="commentInfo" ref="comment"></DetailCommentInfo>
 			<GoodsList :datas="recommendInfo" @imageLoade="goodsImageLoaded" ref="recommend"></GoodsList>
 		</Scroll>
-		<DetailBottomBar></DetailBottomBar>
+		<DetailBottomBar @addCart="addCart"></DetailBottomBar>
 
 		<BackTop @click.native="backTopClick" v-show="bktopShow"></BackTop>
 	</div>
@@ -100,6 +100,13 @@
 			},
 			navTabClick(index) {
 				this.$refs.scroll.scrollTo(0, -this.offsetTopYs[index], 500);
+			},
+			addCart() {
+				let product = {};
+				product.title = this.baseInfo.title;
+				product.price = this.baseInfo.price;
+				product.image = this.swiperData[0];
+				this.$store.dispatch("ADD_CART", product);
 			},
 			goodsImageLoaded() {
 				this.refreshFunc();
